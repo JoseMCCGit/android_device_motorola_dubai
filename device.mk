@@ -47,6 +47,12 @@ DEVICE_PACKAGE_OVERLAYS += \
 
 PRODUCT_ENFORCE_RRO_TARGETS := *
 
+# Prebuilt packages
+PRODUCT_PACKAGES += \
+    MlkitBarcodeUI \
+    VisionBarcode \
+    QRCameraOverlay
+
 PRODUCT_PACKAGES += \
     FrameworksResCommon_Sys \
     CarrierConfigResCommon_Sys \
