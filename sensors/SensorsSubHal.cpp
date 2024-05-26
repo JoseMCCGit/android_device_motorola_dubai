@@ -40,7 +40,7 @@ SensorsSubHal::SensorsSubHal() : mCallback(nullptr), mNextHandle(1) {
 Return<void> SensorsSubHal::getSensorsList_2_1(ISensors::getSensorsList_2_1_cb _hidl_cb) {
     std::vector<SensorInfo> sensors;
     for (const auto& sensor : mSensors) {
-        sensors.push_back(sensor.second->getSensorInfo());
+        sensors.emplace_back(sensor.second->getSensorInfo());
     }
     _hidl_cb(sensors);
     return Void();
@@ -122,17 +122,14 @@ Return<void> SensorsSubHal::debug(const hidl_handle& fd, const hidl_vec<hidl_str
                 getName().c_str());
     }
 
-    std::ostringstream stream;
-    stream << "Available sensors:" << std::endl;
+    fprintf(out, "Available sensors:\n");
     for (auto sensor : mSensors) {
         SensorInfo info = sensor.second->getSensorInfo();
-        stream << "Name: " << info.name << std::endl;
-        stream << "Min delay: " << info.minDelay << std::endl;
-        stream << "Flags: " << info.flags << std::endl;
+        fprintf(out, "Name: %s\n", info.name.c_str());
+        fprintf(out, "Min delay: %" PRId64 "\n", info.minDelay);
+        fprintf(out, "Flags: %d\n", info.flags);
     }
-    stream << std::endl;
-
-    fprintf(out, "%s", stream.str().c_str());
+    fprintf(out, "\n");
 
     fclose(out);
     return Return<void>();
