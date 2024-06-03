@@ -18,6 +18,7 @@
 
 #include <android/hardware/sensors/2.1/types.h>
 #include <log/log.h>
+#include <inttypes.h>
 
 using ::android::hardware::sensors::V2_1::implementation::ISensorsSubHal;
 using ::android::hardware::sensors::V2_1::subhal::implementation::SensorsSubHal;
@@ -126,7 +127,7 @@ Return<void> SensorsSubHal::debug(const hidl_handle& fd, const hidl_vec<hidl_str
     for (auto sensor : mSensors) {
         SensorInfo info = sensor.second->getSensorInfo();
         fprintf(out, "Name: %s\n", info.name.c_str());
-        fprintf(out, "Min delay: %" PRId64 "\n", info.minDelay);
+        fprintf(out, "Min delay: %" PRId32 "\n", info.minDelay);
         fprintf(out, "Flags: %d\n", info.flags);
     }
     fprintf(out, "\n");
