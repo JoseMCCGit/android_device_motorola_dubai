@@ -65,6 +65,13 @@ PRODUCT_PACKAGES += \
     FrameworksResTarget \
     WifiResTarget
 
+# Moto Core
+PRODUCT_PACKAGES += \
+    moto-checkin \
+    moto-settings \
+    moto \
+    com.motorola.frameworks.core.addon \
+    com.motorola.motosignature
 
 # A/B
 ifeq ($(TARGET_IS_VAB),true)
