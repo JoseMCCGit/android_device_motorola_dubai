@@ -11,8 +11,8 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # Inherit from dubai device
 $(call inherit-product, device/motorola/dubai/device.mk)
 
-# Inherit some common flare stuff.
-$(call inherit-product, vendor/flare/config/common_full_phone.mk)
+# Inherit some common lineage stuff.
+$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
 PRODUCT_NAME := lineage_dubai
 PRODUCT_DEVICE := dubai
@@ -21,9 +21,15 @@ PRODUCT_BRAND := motorola
 PRODUCT_MODEL := motorola edge 30
 
 # Matrixx
-FLARE_BUILD_TYPE := OFFICIAL
-FLARE_MAINTAINER := JoséMCC
-#WITH_GAPPS := true
+MATRIXX_BUILD_TYPE := Official
+MATRIXX_MAINTAINER := JoseMCC
+MATRIXX_BATTERY := 4020.0mAh
+MATRIXX_CHIPSET := SM7325
+MATRIXX_DISPLAY := 1080x2400
+#WITH_GMS := true
+TARGET_HAS_UDFPS := true
+TARGET_EXCLUDES_AUDIOFX := true
+TARGET_BOOT_ANIMATION_RES := 1080
 
 PRODUCT_GMS_CLIENTID_BASE := android-motorola
 
